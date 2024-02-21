@@ -103,6 +103,21 @@ class MovieListItem extends StatelessWidget {
           ),
         ),
       ),
+      Container(
+        height: 100,
+        width: MediaQuery.of(context).size.width,
+        margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              Colors.black.withOpacity(0.5),
+              Colors.transparent,
+            ],
+            begin: Alignment.centerRight,
+            end: Alignment.center,
+          ),
+        ),
+      ),
       Positioned(
         top: 30,
         left: 40,
@@ -111,6 +126,7 @@ class MovieListItem extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Column(
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Text(
                   movie.title,
@@ -123,7 +139,8 @@ class MovieListItem extends StatelessWidget {
               ],
             ),
             IconButton(
-              icon: Icon(Icons.playlist_remove_rounded, color: Colors.white),
+              icon: Icon(Icons.playlist_remove_rounded,
+                  color: Colors.white, size: 38),
               onPressed: onFavoritePressed,
             ),
           ],

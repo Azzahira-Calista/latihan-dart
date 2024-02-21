@@ -7,6 +7,7 @@ class WishlistController extends GetxController {
   RxList<int> watchlist = <int>[].obs;
   final movieDB = DatabaseHelper();
   final String watchlistKey = 'watchlist';
+  RxBool isWishlist = false.obs;
 
   @override
   void onInit() {
@@ -36,9 +37,12 @@ class WishlistController extends GetxController {
   }
 
   void addWatchlist(int id) async {
+    isWishlist = true.obs;
+
     try {
       // Memanggil metode insertWatchlist dari DatabaseHelper untuk menambahkan film ke dalam SQLite
       if (!watchlist.contains(id)) {
+        print(isWishlist.value);
         watchlist.add(id);
         await movieDB.insertWatchlist([id]);
       }
@@ -48,8 +52,11 @@ class WishlistController extends GetxController {
   }
 
   void removeWatchlist(int id) async {
+    isWishlist = false.obs;
+
     try {
       // Memanggil metode removeMovie dari DatabaseHelper untuk menghapus film dari SQLite
+      print(isWishlist.value);
       watchlist.remove(id);
       await movieDB.removeMovies(id);
     } catch (e) {
